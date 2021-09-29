@@ -124,4 +124,4 @@ class SpotifyAPI(object):
         return self.base_search(query_params)
 
 spotify = SpotifyAPI(client_id, client_secret)
-print(spotify.search({"track": "Cut to the feeling", "artist": "Carly"}, search_type='artist', results=5))
+print(spotify.search(query="Danger", operator='NOT', operator_query="Zone", search_type='track'))
