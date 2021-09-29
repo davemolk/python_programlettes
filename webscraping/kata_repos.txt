@@ -1,2 +1,0 @@
-https://api.github.com/repos/myjinxin2015/Katas-list-of-Training-JS-series
-https://api.github.com/repos/jhoffner/codewars-runner-cli

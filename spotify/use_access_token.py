@@ -1,6 +1,9 @@
+from os import execv
 import requests
 import base64
 import datetime
+from urllib.parse import urlencode
+
 
 import environ
 env = environ.Env()
@@ -64,4 +67,17 @@ class SpotifyAPI(object):
         return True
 
 spotify = SpotifyAPI(client_id, client_secret)
-print(spotify.perform_auth())
+spotify.perform_auth()
+
+access_token = spotify.access_token
+
+headers = {
+    "Authorization": f"Bearer {access_token}"
+}
+endpoint = "https://api.spotify.com/v1/search"
+data = urlencode({"q": "Time", "type": "track"}) # dictionary => url-ready string
+results = 20
+lookup_url = f"{endpoint}?{data}&limit={results}"
+
+r = requests.get(lookup_url, headers=headers)
+print(r.json())
