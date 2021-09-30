@@ -19,3 +19,7 @@ submit_btn_el = browser.find_element_by_css_selector("input[type='submit']")
 print(submit_btn_el.get_attribute('name'))
 time.sleep(2)
 submit_btn_el.click()
+
+lnks=browser.find_elements_by_tag_name("a")
+for lnk in lnks:
+    print(lnk.get_attribute('href'))
