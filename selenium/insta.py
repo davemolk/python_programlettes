@@ -109,7 +109,7 @@ def scrape_and_save(elements):
 def commenter(browser, content='So awesome!'):
     sleep(3)
     # comment_xpath_str = "//textarea[contains(@placeholder, 'Add a comment...')]"
-    comment_el = browser.find_element_by_xpath("//textarea[@placeholder='Add a comment…']")
+    comment_el = browser.find_element_by_xpath("//textarea[@placeholder='Add a comment…']") # not working, come back to this
     comment_el.send_keys(content)
     sleep(1)
     submit_btns_xpath = "button[type='submit']"
