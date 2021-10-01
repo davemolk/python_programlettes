@@ -11,11 +11,27 @@ def render_template(template_name='index.html', context={}):
     return html_str
 
 
+def home(environ):
+    return render_template(
+        template_name='index.html',
+        context = {}
+    )
+
+def contact(environ):
+    return render_template(
+        template_name='contact.html',
+        context = {}
+    )
+
+
 def app(environ, start_response):
     path = environ.get("PATH_INFO") # key with url as value
-    if path == '/':
-        data = render_template(template_name='index.html',
-        context = {'path': path})
+    if path.endswith("/"):
+        path = path[:-1] # remove trailing slash
+    if path == '':
+        data = home(environ)
+    elif path == '/contact':
+        data = contact(environ)
     else:
         data = render_template(template_name='404.html',
         context = {'path': path})
