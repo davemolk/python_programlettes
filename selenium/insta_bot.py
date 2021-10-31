@@ -35,10 +35,11 @@ class InstaBot():
         self.browser.find_element_by_xpath("//button[contains(text(), 'Not Now')]").click()
 
     def follower(self, url="https://www.instagram.com/therock"):
-        pass
+        sleep(2)
+        # browser.get(url)
 
 insta = InstaBot(username, password)
-insta.login()
+
 
 # def main():
 #     my_bot = InstaBot()
