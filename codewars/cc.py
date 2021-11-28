@@ -10,18 +10,20 @@ def katas(username):
     
     data = r.json()
     katas = data['data']
-    first = katas[0]
-    print(first['name'])
-    print(first)
-    # for kata in katas:
-    #     try:
-    #         r = requests.get(f"https://www.codewars.com/api/v1/code-challenges/{kata['id']}")
-    #         r.raise_for_status()
-    #     except requests.exceptions.HTTPError as err:
-    #         print(err)
-    #     data = r.json()
-    #     # print(data['name'])
-    #     print(data['name'])
+    for kata in katas:
+        kata['completedLanguages'] = ', '.join(kata['completedLanguages'])
+        try:
+            r = requests.get(f"https://www.codewars.com/api/v1/code-challenges/{kata['id']}")
+            r.raise_for_status()
+        except requests.exceptions.HTTPError as err:
+            # TODO
+            # flash error message and add redirect 
+            print(err)
+        data = r.json()
 
-    
-katas('davemolk')
+        kata['description'] = data['description']
+        kata['tags'] = ', '.join(data['tags'])
+        kata['rank']= data['rank']['name']
+        kata['url'] = data['url'] + '/solutions/'
+        if kata['url'] == 'https://www.codewars.com/kata/58279e13c983ca4a2a00002a/solutions/':
+            print(kata)
