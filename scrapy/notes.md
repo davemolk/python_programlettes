@@ -30,3 +30,8 @@ scrapy crawl <spidername> -O <filename>.json
 // big O overwrites any previous file w same name, while little o will append
 
 if you have something like response.css('a.action next') and it doesn't work, try response.css('a.action.next')
+
+with xpath and ItemLoaders, use following format:
+l.add_xpath('link', '//*[@id="product-listing-container"]/form/ul/li[8]/article/figure/a/@href')
+
+vs l.add_css('link', 'a.product-item-link::attr(href)')
