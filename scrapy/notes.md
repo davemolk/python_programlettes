@@ -35,3 +35,11 @@ with xpath and ItemLoaders, use following format:
 l.add_xpath('link', '//*[@id="product-listing-container"]/form/ul/li[8]/article/figure/a/@href')
 
 vs l.add_css('link', 'a.product-item-link::attr(href)')
+
+### fake plants
+scrapy startproject fakeplants
+cd fakeplants
+scrapy genspider plants fake-plants.co.uk (create the spider template, 'plants')
+
+response.css('li.product-category a::attr(href)').get()
+(the a tag is embedded within the li)
