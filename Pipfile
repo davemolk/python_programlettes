@@ -4,9 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-playwright = "*"
-beautifulsoup4 = "*"
-requests-html = "*"
+python-decouple = "*"
 
 [dev-packages]
 

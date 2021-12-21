@@ -1,4 +1,5 @@
 from playwright.sync_api import Playwright, sync_playwright
+import time
 
 def run(playwright: Playwright) -> None:
     browser = playwright.chromium.launch(headless=False)
@@ -76,6 +77,8 @@ def run(playwright: Playwright) -> None:
     page.press("input[name=\"state\"]", "Tab")
     # Fill input[name="zip-code"]
     page.fill("input[name=\"zip-code\"]", "93242")
+
+    time.sleep(1)
     # Click input[name="phone-number"]
     page.click("input[name=\"phone-number\"]")
     # Fill input[name="phone-number"]
@@ -85,6 +88,9 @@ def run(playwright: Playwright) -> None:
     # assert page.url == "https://demo.vuestorefront.io/checkout#payment"
     # Click text=Copy address data from shipping
     page.click("text=Copy address data from shipping")
+
+    time.sleep(1)
+    
     # Click [data-testid="paymentSubmit"]
     page.click("[data-testid=\"paymentSubmit\"]")
     # assert page.url == "https://demo.vuestorefront.io/checkout#orderReview"
