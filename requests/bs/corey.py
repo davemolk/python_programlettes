@@ -1,8 +1,11 @@
 from bs4 import BeautifulSoup
 import requests
+
+
+import csv
 import re
 
-
+'''
 source = requests.get('http://coreyms.com').text
 
 soup = BeautifulSoup(source, 'lxml')
@@ -33,26 +36,37 @@ vid_id = match.group('video')
 
 yt_link = f'https://youtube.com/watch?v={vid_id}'
 
+'''
+
+csv_file = open('corey.csv', 'w')
+csv_writer = csv.writer(csv_file)
+csv_writer.writerow(['headline', 'summary', 'video_link'])
+
+url = 'http://coreyms.com/'
+source = requests.get(url).text
+soup = BeautifulSoup(source, 'lxml')
+
 
 for article in soup.find_all('article'):
     headline = article.a.text
-    summary = article.find('div', class_='entry-content').p.text
     print(headline)
+
+    summary = article.find('div', class_='entry-content').p.text
     print(summary)
 
     try:
         video_src = article.find('iframe', class_='youtube-player')['src']
         match = re.search('^(https://)(www.youtube.com/)(embed/)(?P<video>[^?]*)', video_src)
         vid_id = match.group('video')
-        # vid_id = video_src.split('/')[4].split('?')[0]
         yt_link = f'https://youtube.com/watch?v={vid_id}'
     except Exception as e:
         yt_link = None
 
     print(yt_link)
+
     print()
 
-'''
-write custom exception
-write to csv
-'''
+    csv_writer.writerow([headline, summary, yt_link])
+
+
+csv_file.close()

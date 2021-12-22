@@ -1,5 +1,5 @@
 import requests
-from bs4 import BeautifulSoup as bs
+from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 
 url = "http://books.toscrape.com"
@@ -13,7 +13,7 @@ session.headers['User-Agent'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 12_0_1) 
 html = session.get(url).content
 
 # parse w bs
-soup = bs(html, 'html.parser')
+soup = BeautifulSoup(html, 'html.parser')
 
 # get js
 js_files = []
