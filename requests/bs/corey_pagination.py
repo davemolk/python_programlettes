@@ -15,8 +15,8 @@ page = 0
 r = requests.get('http://coreyms.com/')
 while r.status_code != 404:
     page += 1
-    url = 'http://coreyms.com/page/'f"{page}"
-    r = requests.get('http://coreyms.com/page/'+ f"{page}")
+    url = f'http://coreyms.com/page/{page}'
+    r = requests.get(url)
     soup = BeautifulSoup(r.text, 'lxml')
 
     for article in soup.find_all('article'):
