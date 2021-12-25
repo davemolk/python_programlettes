@@ -57,5 +57,5 @@ if __name__ == '__main__':
 
 
 '''
-I keep getting blocked by Amazon, even with user-agent headers...keep working on this one.
+needed a vpn to get around bot-detection...
 '''
