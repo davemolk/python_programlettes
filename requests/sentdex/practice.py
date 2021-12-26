@@ -10,7 +10,7 @@ body = soup.find('body')
 
 # ****** all links ******
 all_links = soup.find_all('a')
-print(all_links)
+# print(all_links)
 
 # ****** intro stuff ******
 
@@ -23,8 +23,16 @@ first_link = soup.find('p', class_ = 'introduction').a['href']
 
 # ****** languages at top ******
 
+description = soup.find('p', class_ = 'introduction').next_sibling.next_sibling.text
+
 languages = soup.find('div', class_ = 'body').ul
 # print(languages)
+# print(languages.contents) # gets all children, including new line characters
+# kiddos = []
+# for child in languages.children:
+#     kiddos.append(child)
+# print(kiddos) # this will be the same list as contents
+
 
 # for language in languages:
 #     print(language.string)
