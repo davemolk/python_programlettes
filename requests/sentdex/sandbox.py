@@ -8,6 +8,10 @@ body = soup.find('body')
 # print(body.prettify())
 
 
+# ****** all links ******
+all_links = soup.find_all('a')
+print(all_links)
+
 # ****** intro stuff ******
 
 intro = soup.find('div', class_='body').p.text
@@ -70,4 +74,6 @@ links = soup.find('div', class_ = 's12').ul
 link_list = []
 for link in links.find_all('li'):
     link_list.append(link.a['href'])
-print(link_list)
+# print(link_list)
+
+
