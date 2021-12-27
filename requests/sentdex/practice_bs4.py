@@ -1,6 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 
+import re
+
 r = requests.get('https://pythonprogramming.net/parsememcparseface/')
 soup = BeautifulSoup(r.text, 'html.parser')
 # print(soup.prettify())
@@ -77,6 +79,10 @@ end = soup.find('h5', class_ = 'white-text').text
 
 contact = soup.find('div', class_ = 's12').p.text
 # print(contact)
+
+email = soup.find('p', string=re.compile('[\w-]+@[a-zA-Z]+\.[\w]+'))
+print(email)
+
 
 links = soup.find('div', class_ = 's12').ul
 link_list = []
