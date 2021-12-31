@@ -1,14 +1,14 @@
-from requests_html import HTMLSession
+from requests_html import AsyncHTMLSession
+import asyncio
 import time
 
 urls = []
 for x in range(1, 51):
     urls.append(f'http://books.toscrape.com/catalogue/page-{x}.html')
 
-# print(len(urls))
 
-def work(url):
-    r = s.get(url)
+async def work(s, url):
+    r = await s.get(url)
     products = []
     desc = r.html.find('article.product_pod')
     for item in desc:
@@ -19,13 +19,13 @@ def work(url):
         products.append(product)
     return products
 
-def main(urls):
-    for url in urls:  
-        print(work(url))
-    return
+async def main(urls):
+    s = AsyncHTMLSession()
+    tasks = (work(s, url) for url in urls)
+    return await asyncio.gather(*tasks)
 
-s = HTMLSession()
 start = time.perf_counter()
-main(urls)
+results = asyncio.run(main(urls))
+print(results)
 end = time.perf_counter() - start
-print(end) # 6.0757828709999995
+print(end) # 3.2839438230000004
