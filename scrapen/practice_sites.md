@@ -4,6 +4,7 @@ http://quotes.toscrape.com/
 
 https://webscraper.io/test-sites
 
+https://www.scrapethissite.com/pages/
 
 
 to look at: 
