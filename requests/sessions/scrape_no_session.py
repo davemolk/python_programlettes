@@ -1,11 +1,12 @@
 from bs4 import BeautifulSoup
 import requests
 
-
 import datetime
 
 
 def get_title(page: int):
+    """print title of books on a page"""
+    
     url = f'https://scrapethissite.com/pages/forms/?page_num={page}'
     r = requests.get(url)
     soup = BeautifulSoup(r.text, 'html.parser')
